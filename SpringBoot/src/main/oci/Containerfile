@@ -1,0 +1,27 @@
+####
+# This Containerfile is used in order to build a container that runs the Quarkus application in JVM mode
+#
+# Before building the container image run:
+#
+# ./mvnw package
+#
+# Then, build the image with:
+#
+# podman build -f src/main/oci/Containerfile -t springboot/camel-timer-http-base64-kafka .
+#
+# OR 
+#
+# docker build -f src/main/oci/Containerfile -t springboot/camel-timer-http-base64-kafka .
+#
+# Then run the container using:
+#
+# podman run -i --rm -p 8080:8080 springboot/camel-timer-http-base64-kafka
+#
+# OR 
+#
+# docker run -i --rm -p 8080:8080 springboot/camel-timer-http-base64-kafka
+####
+
+FROM registry.access.redhat.com/ubi8/openjdk-11-runtime:latest
+
+COPY --chown=185 target/*.jar /deployments/
